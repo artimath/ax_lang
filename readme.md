@@ -58,6 +58,44 @@ Axiomadic aims to be more than just a programming language. Our goal is to creat
 
 ## Roadmap
 
+```mermaid
+
+graph LR
+    A[1.1 Core Calculus Implementation] --> B[1.2 Type System Development]
+    A --> C[2.1 Parallel Computation Model]
+    B --> D[1.3 Effect System and Linear Types]
+    B --> E[3.1 Tactic Language Development]
+    C --> F[2.2 Automatic Parallelization]
+    E --> G[3.2 Theorem Proving Capabilities]
+    G --> H[3.3 Integration of Proofs and Code]
+    B --> I[4.1 Metaprogramming System]
+    A --> J[4.2 Standard Library Development]
+    B --> J
+    C --> J
+    A --> K[5.1 Compiler Development]
+    B --> K
+    C --> K
+    D --> K
+    K --> L[5.2 Development Environment]
+    J --> M[5.3 Package Management and Build System]
+    K --> M
+    A --> N[6.1 Language Documentation]
+    B --> N
+    C --> N
+    D --> N
+    E --> N
+    F --> N
+    G --> N
+    H --> N
+    I --> N
+    J --> N
+    K --> N
+    L --> N
+    M --> N
+    N --> O[6.2 Community Building]
+
+```
+
 Here's our high-level plan for developing Axiomadic:
 
 - [x] Develop basic interpreter in Rust

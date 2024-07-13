@@ -56,6 +56,13 @@ Axiomadic is currently in the very early stages of development. We have a basic 
 
 Axiomadic aims to be more than just a programming language. Our goal is to create a comprehensive environment for developing, proving, and executing complex computational and mathematical ideas. 
 
+- Dependent type system with Cubical Type Theory features
+- Built-in parallel computation model (multi-core/CUDA/OpenCL)
+- Integrated proof assistant with tactics
+- Effect system and linear types
+- Metaprogramming capabilities
+- Automatic parallelization and proof-guided optimization
+
 ## Roadmap
 
 ```mermaid

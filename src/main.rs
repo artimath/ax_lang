@@ -24,8 +24,11 @@ struct Interpreter {
 impl Interpreter {
     fn new() -> Self {
         let mut env = HashMap::new();
-        env.insert("+".to_string(), Value::Function("+".to_string(), vec!["x".to_string(), "y".to_string()], 
-                   Box::new(Expr::Variable("builtin_add".to_string()))));
+        env.insert("+".to_string(), Value::Function(
+            "+".to_string(),
+            vec!["x".to_string(), "y".to_string()],
+            Box::new(Expr::Variable("x".to_string())) // This is a placeholder
+        ));
         Interpreter { env }
     }
 
@@ -37,16 +40,29 @@ impl Interpreter {
             Expr::Application(func, args) => {
                 let func_val = self.eval(func)?;
                 match func_val {
-                    Value::Function(_, params, body) => {
-                        if params.len() != args.len() {
-                            return Err("Wrong number of arguments".to_string());
+                    Value::Function(name, params, body) => {
+                        if name == "+" {
+                            // Handle built-in addition
+                            if args.len() != 2 {
+                                return Err("add takes 2 arguments".to_string());
+                            }
+                            let x = self.eval(&args[0])?;
+                            let y = self.eval(&args[1])?;
+                            match (x, y) {
+                                (Value::Int(a), Value::Int(b)) => Ok(Value::Int(a + b)),
+                                _ => Err("add takes two integers".to_string()),
+                            }
+                        } else {
+                            if params.len() != args.len() {
+                                return Err("Wrong number of arguments".to_string());
+                            }
+                            let mut new_env = self.env.clone();
+                            for (param, arg) in params.iter().zip(args) {
+                                new_env.insert(param.clone(), self.eval(arg)?);
+                            }
+                            let mut new_interpreter = Interpreter { env: new_env };
+                            new_interpreter.eval(&body)
                         }
-                        let mut new_env = self.env.clone();
-                        for (param, arg) in params.iter().zip(args) {
-                            new_env.insert(param.clone(), self.eval(arg)?);
-                        }
-                        let mut new_interpreter = Interpreter { env: new_env };
-                        new_interpreter.eval(&body)
                     },
                     _ => Err("Not a function".to_string()),
                 }

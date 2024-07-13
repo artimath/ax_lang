@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "proofnet_interpreter"
+name = "axiomadic_interpreter"
 version = "0.1.0"

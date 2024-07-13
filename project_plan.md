@@ -36,7 +36,8 @@ graph LR
     M --> N
     N --> O[6.2 Community Building]
 
-    ```
+```
+
 
 ## Initiative 1: Core Language Development
 

@@ -1,6 +1,6 @@
 # Axiomadic Detailed Project Plan
 
-'''mermaid
+```mermaid
 
 graph LR
     A[1.1 Core Calculus Implementation] --> B[1.2 Type System Development]
